@@ -1,0 +1,18 @@
+<div class="row container-fluid">
+  <div class="col-md-12 d-flex flex-wrap justify-content-center">
+        <div class="card m-3 d-flex flex-column flex-shrink-1" style="width: 30%">
+          <h5 class="card-title text-center text-dark" style="height: 5%;">{{movie.title}}</h5>
+          <div class="card-body" style="width:auto;height: 50%;">
+            <div style="width:auto;height: 100%;">
+              <img class="card-img-top" style="max-width: auto;height:100%;" src="http://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="Card image cap">
+            </div>
+          </div>
+          <div class="card-footer" style="width:auto;height: 40%;">
+            <p>{{movie.overview}}</p>
+            <i><h3>Voto medio: {{movie.vote_average}}</h3></i>
+            <br>
+            <i><h3>Numero di voti: {{movie.vote_count}}</h3></i>
+          </div>
+        </div>
+  </div>
+</div>

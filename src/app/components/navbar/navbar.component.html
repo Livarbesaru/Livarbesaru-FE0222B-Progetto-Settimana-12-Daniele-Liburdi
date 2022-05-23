@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger bg-gardient">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/']" *ngIf="isLoggedIn">movies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/profile']" *ngIf="isLoggedIn">profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/signup']" *ngIf="!isLoggedIn">signup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/login']" *ngIf="!isLoggedIn">login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/signup']" *ngIf="isLoggedIn" (click)="logOut()">logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

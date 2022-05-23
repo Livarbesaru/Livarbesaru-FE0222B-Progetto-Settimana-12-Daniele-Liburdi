@@ -1,0 +1,105 @@
+<div class="container-fluid d-flex flex-column">
+  <div class="row container">
+  </div>
+  <div class="row container-fluid d-flex justify-content-center text-white">
+    <div class="collapse" id="collapseExample">
+      <div>
+        <h3>Scegli tendenze</h3>
+        <div class="d-flex">
+              <button class="btn btn-primary m-5 col-3" (click)="onlyRated()">Piú votati</button>
+              <button class="btn btn-primary m-5 col-3" (click)="onlyPopular()">Piú Popolari</button>
+              <button class="btn btn-primary m-5 col-3" (click)="loadAllfilm()">Default</button>
+        </div>
+        <div class="d-flex">
+          <button class="btn btn-primary m-5 col-3" (click)="sortByMostpopular()">Ordina per numero di voti</button>
+          <button class="btn btn-primary m-5 col-3" (click)="sortByMostRated()">Ordina per voto medio</button>
+    </div>
+      </div>
+      <div>
+        <h3>Scegli le categorie</h3>
+        <div class="d-inline">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#type1" aria-expanded="false"
+            aria-controls="type1">+</button>
+          <select name="typeOne" id="type1" class="collapse" #type1>
+            <option value=""></option>
+            <option *ngFor="let genre of genres">{{genre.name}}</option>
+          </select>
+        </div>
+
+        <div class="d-inline">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#type2" aria-expanded="false"
+            aria-controls="type2" *ngIf="type1">+</button>
+          <select name="typeTwo" id="type2" class="collapse" #type2>
+            <option value=""></option>
+            <option *ngFor="let genre of genres">{{genre.name}}</option>
+          </select>
+        </div>
+
+        <div class="d-inline">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#type3" aria-expanded="false"
+            aria-controls="type3">+</button>
+          <select name="typeThree" id="type3" class="collapse" #type3>
+            <option value=""></option>
+            <option *ngFor="let genre of genres">{{genre.name}}</option>
+          </select>
+        </div>
+
+        <div class="d-inline">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#type4" aria-expanded="false"
+            aria-controls="type4">+</button>
+          <select name="typeFour" id="type4" class="collapse" #type4>
+            <option value=""></option>
+            <option *ngFor="let genre of genres">{{genre.name}}</option>
+          </select>
+        </div>
+
+
+        <div class="d-inline">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#type5" aria-expanded="false"
+            aria-controls="type5">+</button>
+          <select name="typeFour" id="type5" class="collapse" #type5>
+            <option value=""></option>
+            <option *ngFor="let genre of genres">{{genre.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row container">
+        <button (click)="filter()" class="m-5 col-3">Applica categorie</button>
+        <button (click)="resetFilter()" class="m-5 col-3">Reset filtri</button>
+      </div>
+
+      <div *ngIf="errorMessage"><h3 class="text-white">Nessun film trovato con questi parametri</h3></div>
+    </div>
+    <button class="btn btn-primary m-5 col-3" type="button"
+    data-toggle="collapse" data-target="#collapseExample"
+    aria-expanded="false" aria-controls="collapseExample">
+      Sezioni Filtri
+    </button>
+  </div>
+  <div class="row container-fluid">
+    <div class="col-md-12 d-flex flex-wrap justify-content-center">
+          <div class="card m-3 d-flex flex-column flex-shrink-1" style="width: 20%;height: 800px;" *ngFor="let elemento of movieArray">
+            <h5 class="card-title text-center text-dark" style="height: 5%;">{{elemento.title}}  {{elemento.id}}</h5>
+            <div class="card-body" style="width:auto;height: 50%;">
+              <div style="width:auto;height: 100%;">
+                <img class="card-img-top" style="max-width: auto;height:100%;" src="http://image.tmdb.org/t/p/w500{{elemento.poster_path}}" alt="Card image cap">
+              </div>
+            </div>
+            <div class="card-footer" style="width:auto;height: 35%;">
+              <i><h3>Voto medio: {{elemento.vote_average}}</h3></i>
+              <br>
+              <i><h3>Numero di voti: {{elemento.vote_count}}</h3></i>
+              <div ></div>
+              <button (click)="this.postFavorite(elemento.id)" class="btn btn-success d-block" *ngIf="this.findFav(elemento.id)" [disabled]="stop">
+                <p >Aggiungi ai favoriti</p>
+              </button>
+              <button (click)="this.postFavorite(elemento.id)" class="btn btn-danger d-block" *ngIf="!this.findFav(elemento.id)" [disabled]="stop">
+                <p>Rimuovi dai favoriti</p>
+              </button>
+              <button (click)="dettailMovie(elemento.id)" class="btn btn-primary d-block">Dettails</button>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div>
+  <form [formGroup]="form" #test="ngForm" (ngSubmit)="login(test)">
+    <fieldset formGroupName="utente">
+      <div>
+        <label for="email">email</label>
+        <input formControlName="email" type="text" id="email"/>
+        <ng-container *ngIf="controlloType('utente.email')?.invalid && controlloType('utente.email')?.touched" >
+          <p *ngIf="errorType('utente.email','required')">il campo è obbligatorio</p>
+        </ng-container>
+      </div>
+      <div>
+        <label for="pass">Password</label>
+        <input formControlName="password" type="text" id="pass" />
+        <ng-container *ngIf="controlloType('utente.password')?.invalid && controlloType('utente.password')?.touched" >
+          <p *ngIf="errorType('utente.password','required')">il campo è obbligatorio</p>
+          <p *ngIf="errorType('utente.password','minlength')">Richiede come minimo almeno 8 caratteri</p>
+        </ng-container>
+      </div>
+    </fieldset>
+    <div>
+
+    </div>
+    <button type="submit" [disabled]="!form.valid">schaccia</button>
+  </form>
+</div>
